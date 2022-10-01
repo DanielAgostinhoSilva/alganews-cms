@@ -36,4 +36,12 @@ Text.args = {
     label: 'Button',
 };
 
+export const Disabled = Template.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+Disabled.args = {
+    variant: 'primary',
+    label: 'Button',
+    disabled: true
+};
+
 
