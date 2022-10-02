@@ -3,8 +3,9 @@ import {transparentize} from "polished";
 
 export const Wrapper = styled.label`
   display: flex;
-  gap: 16px;
   flex-direction: column;
+  justify-content: space-between;
+  height: 56px;
   
   span.Label {
     font-size: 14px;
@@ -17,7 +18,6 @@ export const Wrapper = styled.label`
     font-size: 18px;
     font-weight: 500;
     
-    box-sizing: border-box;
     padding-bottom: 6px;
     border: none;
     outline: none;
