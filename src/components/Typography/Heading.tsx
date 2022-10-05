@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export interface HeadingProps {
     level: 1 | 2 | 3
-    chidren: React.ReactNode
+    children: React.ReactNode
 }
 
 export default function Heading(props: HeadingProps) {
@@ -13,7 +13,7 @@ export default function Heading(props: HeadingProps) {
     }[props.level])
 
     return <Component>
-        {props.chidren}
+        {props.children}
     </Component>
 }
 

@@ -3,7 +3,7 @@ import {ComponentStory, ComponentMeta} from '@storybook/react';
 import Heading, {HeadingProps} from '../components/Typography/Heading';
 
 export default {
-    title: 'Example/Heading',
+    title: 'Typograph/Heading',
     component: Heading,
     // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
     // argTypes: {
@@ -16,17 +16,17 @@ const Template: ComponentStory<typeof Heading> = (args) => <Heading {...args} />
 export const Heading1 = Template.bind({})
 Heading1.args = {
     level: 1,
-    chidren: 'Heading 1'
+    children: 'Heading 1'
 }
 
 export const Heading2 = Template.bind({})
 Heading2.args = {
     level: 2,
-    chidren: 'Heading 2'
+    children: 'Heading 2'
 }
 
 export const Heading3 = Template.bind({})
 Heading3.args = {
     level: 3,
-    chidren: 'Heading 3'
+    children: 'Heading 3'
 }
