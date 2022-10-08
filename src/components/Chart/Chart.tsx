@@ -1,57 +1,4 @@
-import React from 'react';
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend,
-} from 'chart.js';
 import { Line } from 'react-chartjs-2';
-
-ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend
-);
-
-export const options = {
-    maintainAspectRatio: false,
-    responsive: true,
-    interaction: {
-        mode: 'index' as const,
-        intersect: false,
-    },
-    stacked: false,
-    plugins: {
-        title: {
-            display: true,
-            text: 'Chart.js Line Chart - Multi Axis',
-        },
-    },
-    scales: {
-        y: {
-            type: 'linear' as const,
-            display: true,
-            position: 'left' as const,
-        },
-        y1: {
-            type: 'linear' as const,
-            display: true,
-            position: 'right' as const,
-            grid: {
-                drawOnChartArea: false,
-            },
-        },
-    },
-};
-
 
 const data = {
     labels: ['1', '2', '3', '4', '5', '6'],
@@ -75,11 +22,35 @@ const data = {
     ],
 };
 
+const options: Chart.ChartOptions = {
+    maintainAspectRatio: false,
+    scales: {
+        yAxes: [
+            {
+                type: 'linear',
+                display: true,
+                position: 'left',
+                id: 'y-axis-1',
+            },
+            {
+                type: 'linear',
+                display: true,
+                position: 'right',
+                id: 'y-axis-2',
+                gridLines: {
+                    display: false
+                },
+            },
+        ],
+    },
+};
+
 export interface ChartProps {}
 
 export default function Chart () {
     return <div>
         <Line
+            type="line"
             height={100}
             data={data}
             options={options}
