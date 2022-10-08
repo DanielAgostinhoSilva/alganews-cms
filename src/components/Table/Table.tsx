@@ -57,7 +57,9 @@ export default function Table() {
             {
                 Header: 'Column 1',
                 accessor: 'col1',
-                width: 320
+                width: 320,
+                Cell : (row) => <div style={{textAlign: 'right'}}>{row.value}</div>
+
             },
             {
                 Header: 'Column 2',
