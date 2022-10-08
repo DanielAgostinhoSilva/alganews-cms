@@ -16,7 +16,6 @@
 *.iws
 *.iml
 *.ipr
-.storybook
 
 # misc
 .DS_Store

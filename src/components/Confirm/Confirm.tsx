@@ -2,29 +2,30 @@ import styled from "styled-components";
 import Button from "../Button/Button";
 
 export interface ConfirmProps {
-    title: string
-    onConfirm: () => any
-    onCancel: () => any
+  title: string
+  onConfirm: () => any
+  onCancel: () => any
 }
 
-export default function Confirm(props: ConfirmProps) {
-    return <ConfirWrapper>
-        <ConfirmTitle>{props.title}</ConfirmTitle>
-        <ConfirmButtonDisplay>
-            <Button variant={'danger'} label={'Não'} onClick={props.onCancel}/>
-            <Button variant={'primary'} label={'Sim'} onClick={props.onConfirm}/>
-        </ConfirmButtonDisplay>
-    </ConfirWrapper>
+export default function Confirm (props: ConfirmProps) {
+  return <ConfirmWrapper>
+    <ConfirmTitle>{props.title}</ConfirmTitle>
+    <ConfirmButtonDisplay>
+      <Button variant="danger" label="Não" onClick={props.onCancel}/>
+      <Button variant="primary" label="Sim" onClick={props.onConfirm}/>
+    </ConfirmButtonDisplay>
+  </ConfirmWrapper>
 }
 
-const ConfirWrapper = styled.div`
+const ConfirmWrapper = styled.div`
   padding: 24px;
   display: flex;
   flex-direction: column;
   gap: 12px;
   align-items: center;
   justify-content: center;
-  background-color: #F2F8FA;
+  background-color: #F3F8FA;
+  color: #274060;
   width: 229px;
 `
 

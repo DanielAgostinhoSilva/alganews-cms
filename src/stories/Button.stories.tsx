@@ -1,47 +1,38 @@
-import {ComponentStory, ComponentMeta} from '@storybook/react';
+import { Story, Meta } from '@storybook/react';
+import Button, { ButtonProps } from '../components/Button/Button';
 
-import Button, {ButtonProps} from '../components/Button/Button';
-
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-    title: 'Example/Button',
-    component: Button,
-    // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-    // argTypes: {
-    //     backgroundColor: {control: 'color'},
-    // },
-} as ComponentMeta<typeof Button>;
+  title: 'Example/Button',
+  component: Button,
+  // argTypes: {
+  //   backgroundColor: { control: 'color' },
+  // },
+} as Meta;
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
+const Template: Story<ButtonProps> = (args) => <Button {...args} />;
 
 export const Primary = Template.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
 Primary.args = {
-    variant: 'primary',
-    label: 'resetar senha',
+  variant: 'primary',
+  label: 'resetar senha',
 };
-
 export const Danger = Template.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
+
 Danger.args = {
-    variant: 'danger',
-    label: 'resetar senha',
+  variant: 'danger',
+  label: 'resetar senha',
 };
 
 export const Text = Template.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
 Text.args = {
-    variant: 'text',
-    label: 'resetar senha',
+  variant: 'text',
+  label: 'resetar senha',
 };
 
 export const Disabled = Template.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
 Disabled.args = {
-    variant: 'primary',
-    label: 'resetar senha',
-    disabled: true
+  variant: 'primary',
+  disabled: true,
+  label: 'resetar senha',
 };
-
 

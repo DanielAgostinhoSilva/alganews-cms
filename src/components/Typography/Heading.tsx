@@ -1,20 +1,20 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export interface HeadingProps {
-    level: 1 | 2 | 3
-    children: React.ReactNode
+  level: 1 | 2 | 3
+  children: React.ReactNode
 }
 
-export default function Heading(props: HeadingProps) {
-    const Component = ({
-        1: Heading1,
-        2: Heading2,
-        3: Heading3
-    }[props.level])
+export default function Heading ({ level, children }: HeadingProps) {
+  const Component = ({
+    1: Heading1,
+    2: Heading2,
+    3: Heading3
+  }[level])
 
-    return <Component>
-        {props.children}
-    </Component>
+  return <Component>
+    { children }
+  </Component>
 }
 
 const Heading1 = styled.h1`
