@@ -1,4 +1,4 @@
-import { Line } from 'react-chartjs-2';
+import {Line} from 'react-chartjs-2';
 
 const data = {
     labels: ['1', '2', '3', '4', '5', '6'],
@@ -24,6 +24,14 @@ const data = {
 
 const options: Chart.ChartOptions = {
     maintainAspectRatio: false,
+    legend: {
+        display: true,
+        position: 'bottom',
+        align: 'center',
+        labels: {
+            usePointStyle: true
+        }
+    },
     scales: {
         yAxes: [
             {
@@ -45,9 +53,10 @@ const options: Chart.ChartOptions = {
     },
 };
 
-export interface ChartProps {}
+export interface ChartProps {
+}
 
-export default function Chart () {
+export default function Chart() {
     return <div>
         <Line
             type="line"
