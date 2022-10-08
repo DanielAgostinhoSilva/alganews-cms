@@ -22,6 +22,7 @@ ChartJS.register(
 );
 
 export const options = {
+    maintainAspectRatio: false,
     responsive: true,
     interaction: {
         mode: 'index' as const,
@@ -79,6 +80,7 @@ export interface ChartProps {}
 export default function Chart () {
     return <div>
         <Line
+            height={100}
             data={data}
             options={options}
         />
