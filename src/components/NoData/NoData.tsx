@@ -1,13 +1,16 @@
 import styled from "styled-components";
+import {mdiEmoticonSadOutline, mdiOpenInNew} from "@mdi/js";
+import Icon from "@mdi/react";
 
 export interface NoDataProps {
     height?: number
 }
 
-export default function NoData ({ height = 120 }: NoDataProps) {
+export default function NoData({height = 120}: NoDataProps) {
     return <NoDataWrapper height={height}>
         <Message>Sem dados para exibir</Message>
-        <SadFace>:(</SadFace>
+        {/*<SadFace>:(</SadFace>*/}
+        <Icon path={mdiEmoticonSadOutline} size={'25px'} color={'#09f'} />
     </NoDataWrapper>
 }
 
