@@ -27,7 +27,7 @@ export const CircleBG = styled.circle.attrs({
     fill: '#fff',
 })``
 
-export const Percentage = styled.span`
+export const Percentage = styled.span<{fontColor: string}>`
   position: absolute;
   top: 0;
   left: 0;
@@ -39,7 +39,7 @@ export const Percentage = styled.span`
   justify-content: center;
   align-items: center;
 
-  color: #274060;
+  color: ${p => p.fontColor};
 
   font-weight: 900;
   font-size: 1.2em;
