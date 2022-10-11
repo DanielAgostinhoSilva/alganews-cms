@@ -22,7 +22,7 @@ function CircleChart (props: CircleChartProps) {
     const CIRCUMFERENCE = 2 * Math.PI * RADIUS
 
     const [offset, setOffeset] = useState(CIRCUMFERENCE)
-    
+
     useEffect(() => {
         const progressOffset = ((100 - props.progress) / 100) * CIRCUMFERENCE
         setOffeset(progressOffset)
