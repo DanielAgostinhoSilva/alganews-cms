@@ -7,9 +7,9 @@ const data = {
             label: 'Receitas',
             data: [500, 400, 600, 100, 800, 20],
             fill: true,
-            backgroundColor: '#0099ff',
+            backgroundColor: '#0099FF',
+            borderColor: '#0099FF',
             borderWidth: 0.5,
-            borderColor: '#0099ff',
             yAxisID: 'cashflow',
         },
         {
@@ -17,8 +17,8 @@ const data = {
             data: [100, 200, 250, 500, 1000, 600],
             fill: true,
             backgroundColor: '#274060',
-            borderWidth: 0.5,
             borderColor: '#274060',
+            borderWidth: 0.5,
             yAxisID: 'cashflow',
         },
     ],
@@ -40,10 +40,18 @@ const options: Chart.ChartOptions = {
         }
     },
     scales: {
+        xAxes: [
+            {
+                display: true,
+                gridLines: {
+                    display: false
+                }
+            }
+        ],
         yAxes: [
             {
                 type: 'linear',
-                display: true,
+                display: false,
                 position: 'left',
                 id: 'cashflow',
             }
