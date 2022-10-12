@@ -1,5 +1,7 @@
 import { Story, Meta } from '@storybook/react';
 import TagInput, { TagInputProps } from '../components/TagInput/TagInput';
+import {useState} from "react";
+import {Tag} from "react-tag-input";
 
 export default {
     title: 'Example/TagInput',
@@ -31,4 +33,15 @@ VariousTags.args = {
     placeholder: 'Insira as tags deste post'
 }
 
+export function WorkingLiveExample() {
+    const [tags, setTags] = useState<Tag[]>([])
+
+
+    return <TagInput
+        placeholder={'Insira as tags deste post'}
+        tags={tags}
+        onAdd={tag => setTags([...tags, tag])}
+        onDelete={index => setTags(tags.filter((tag, i) => i !== index))}
+    />
+}
 
