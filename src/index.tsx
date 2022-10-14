@@ -7,13 +7,17 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Home from "./views/Home.view";
 import Contact from "./views/Contact.view";
 import NotFound404 from "./views/NotFound404.view";
+import UserVeiw from "./views/User.veiw";
+import Navbar from "./components/NavBar/Navbar";
 
 ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
+            <Navbar/>
             <Routes>
-                <Route path={'/home'} element={<Home/>}/>
+                <Route path={'/'} element={<Home/>}/>
                 <Route path={'/contato'} element={<Contact/>}/>
+                <Route path={'/usuario/:userId'} element={<UserVeiw/>}/>
                 <Route path={'*'} element={<NotFound404/>}/>
             </Routes>
         </BrowserRouter>
