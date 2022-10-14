@@ -3,7 +3,7 @@ import Icon from '@mdi/react'
 import { ChangeEvent, useState } from 'react'
 import Button from '../Button/Button'
 import * as IU from './ImageUpload.styles'
-import {Heading3} from "../../stories/Heading.stories";
+import {Heading3} from "../../../stories/Heading.stories";
 
 export interface ImageUploadProps {
     label: string

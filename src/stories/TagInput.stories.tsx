@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react';
-import TagInput, { TagInputProps } from '../components/TagInput/TagInput';
+import TagInput, { TagInputProps } from '../app/components/TagInput/TagInput';
 import {useState} from "react";
 import {Tag} from "react-tag-input";
 
