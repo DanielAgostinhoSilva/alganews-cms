@@ -8,6 +8,7 @@ import Contact from "./app/views/Contact.view";
 import NotFound404 from "./app/views/NotFound404.view";
 import UserVeiw from "./app/views/User.veiw";
 import Navbar from "./app/components/NavBar/Navbar";
+import GlobalStyles from "./core/globalStyles";
 
 ReactDOM.render(
     <React.StrictMode>
@@ -20,7 +21,7 @@ ReactDOM.render(
                 <Route path={'*'} element={<NotFound404/>}/>
             </Routes>
         </BrowserRouter>
-
+        <GlobalStyles/>
     </React.StrictMode>,
     document.getElementById('root')
 );
