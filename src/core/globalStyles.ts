@@ -1,4 +1,5 @@
 import {createGlobalStyle} from 'styled-components/macro'
+import {transparentize} from "polished";
 
 export default createGlobalStyle`
   * {
@@ -11,5 +12,9 @@ export default createGlobalStyle`
     font-family: 'Lato', sans-serif;
     background-color: #f3f8fa;
     color: #274060
+  }
+  
+  .confirm-overlay{
+    background-color: ${transparentize(0.2, '#274060')};
   }
 `
