@@ -12,6 +12,7 @@ export interface MarkdownEditorProps {
 
 export default function MarkdownEditor() {
     return <MdEditor
+        style={{height: 300}}
         renderHTML={text => parser.render(text)}
     />
 }
