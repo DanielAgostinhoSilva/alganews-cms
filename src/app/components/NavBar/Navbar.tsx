@@ -1,11 +1,11 @@
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import styled from "styled-components";
 
 export default function Navbar() {
     return <>
         <List>
-            <Item><Link to="/">Home</Link></Item>
-            <Item><Link to="contato">Contato</Link></Item>
+            <Item><NavLink  to="/" end>Home</NavLink></Item>
+            <Item><NavLink to="/contato" end>Contato</NavLink></Item>
         </List>
     </>
 }
@@ -23,7 +23,11 @@ const Item = styled.li`
   
   a {
     text-decoration: none;
-    color: #274060
+    color: #274060;
+    
+    &.active {
+      color: #09f;
+    }
   }
   
 `
