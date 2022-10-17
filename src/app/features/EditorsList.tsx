@@ -1,8 +1,12 @@
-import CircleChart from "../components/CircleChart";
 import styled from "styled-components";
 import Profile from "../components/Profile";
+import {User} from "../../@types/User";
 
 export default function EditorsList() {
+
+    const editors: User.EditorSummary[] =[]
+
+
     return <EditorsListWrapper>
         <Profile editorId={1} name={'Daniel'} description={'editor há 8 anos'}/>
         <Profile editorId={2} name="João Frango" description="editor há 2 anos" />
