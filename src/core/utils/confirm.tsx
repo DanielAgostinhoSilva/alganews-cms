@@ -24,7 +24,7 @@ export default function confirm(props: ConfirmProps){
                         }}
                         onCancel={() => {
                             if(props.onCancel) {
-                                props.onCancel
+                                props.onCancel()
                             }
                             onClose()
                         }}
