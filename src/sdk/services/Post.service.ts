@@ -13,6 +13,12 @@ class PostService extends Service {
             .get<Post.Paginated>(`/posts/${id}`)
             .then(this.getData)
     }
+
+    static insertNewPost(post: Post.Input) {
+        return this.Http
+            .post<Post.Detailed>('/posts', post)
+            .then(this.getData)
+    }
 }
 
 export default PostService
