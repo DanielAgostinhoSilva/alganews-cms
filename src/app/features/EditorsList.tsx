@@ -7,7 +7,7 @@ import PostService from "../../sdk/services/Post.service";
 export default function EditorsList() {
 
     useEffect(() => {
-        const post = PostService.getExistingPost(1)
+        const post = PostService.getAllPosts({})
         console.log(post)
     }, [])
 
