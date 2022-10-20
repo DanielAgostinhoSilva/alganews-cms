@@ -1,12 +1,13 @@
-import {mdiOpenInNew, mdiTrashCan, mdiTrashCanOutline, mdiUpload} from '@mdi/js'
+import {mdiUpload} from '@mdi/js'
 import Icon from '@mdi/react'
-import { ChangeEvent, useState } from 'react'
+import {ChangeEvent, useState} from 'react'
+import FileService from '../../../sdk/services/File.service'
 import Button from '../Button/Button'
 import * as IU from './ImageUpload.styles'
-import {Heading3} from "../../../stories/Heading.stories";
 
 export interface ImageUploadProps {
-    label: string
+    label: string,
+    onImageUpload: (imageUrl: string) => any
 }
 
 function ImageUpload (props: ImageUploadProps) {
@@ -18,8 +19,10 @@ function ImageUpload (props: ImageUploadProps) {
         if (file) {
             const reader = new FileReader()
 
-            reader.addEventListener('load', e => {
+            reader.addEventListener('load', async e => {
                 setFilePreview(String(e.target?.result));
+                const imageUrl = await FileService.upload(file)
+                props.onImageUpload(imageUrl)
             })
 
             reader.readAsDataURL(file)
@@ -29,13 +32,11 @@ function ImageUpload (props: ImageUploadProps) {
     if (filePreview)
         return <IU.ImagePreviewWrapper>
             <IU.ImagePreview preview={filePreview}>
-                <IU.ButtonWrapper  onClick={() => setFilePreview(null)}>
-                    <IU.ButtonLabel>
-                        <span>{'Remover imagem'}</span>
-                        <Icon path={mdiTrashCanOutline} size={'24px'} color={'#274060'} />
-                    </IU.ButtonLabel>
-                </IU.ButtonWrapper>
-
+                <Button
+                    variant={'primary'}
+                    label={'Remover imagem'}
+                    onClick={() => setFilePreview(null)}
+                />
             </IU.ImagePreview>
         </IU.ImagePreviewWrapper>
 
@@ -48,7 +49,6 @@ function ImageUpload (props: ImageUploadProps) {
             { props.label }
             <IU.Input
                 type="file"
-                accept="*/*"
                 onChange={handleChange}
             />
         </IU.Label>
