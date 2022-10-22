@@ -55,7 +55,7 @@ function CircleChart(props: CircleChartProps) {
                 />
             </CC.Svg>
             <CC.Percentage fontColor={THEME}>
-                {props.progress}%
+                {Math.ceil(props.progress)}%
             </CC.Percentage>
         </CC.SvgWrapper>
         {

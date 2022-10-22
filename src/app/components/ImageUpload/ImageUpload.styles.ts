@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Wrapper as Button } from '../Button/Button.styles'
 
 export const Wrapper = styled.div`
-  
+
 `
 
 export const ImagePreview = styled.div<{ preview: string }>`
@@ -17,41 +17,11 @@ export const ImagePreview = styled.div<{ preview: string }>`
   align-items: center;
 `
 
-export const ButtonWrapper = styled.button`
-  width: 203px;
-  height: 56px;
-
-  padding-left: 16px;
-  border: 1px solid #274060;
-  
-  font-size: 18px;
-
-  color: #274060;
-  background-color: #FFFFFF;
-
-  justify-content: center;
-  align-items: center;
-
-  &:hover,
-  &:focus {
-    box-shadow: 0 3px 6px rgba(0,0,0,.2);
-  }
-`
-export const ButtonLabel = styled.label`
-  background-color: #FFFFFF;
-  color: #274060;
-  font-family: 'Lato', sans-serif;
-
-  display: flex;
-  align-items: center;
-  gap: 10px;
-`
-
 export const ImagePreviewWrapper = styled.div`
   background-color: #274060;
   height: 240px;
 
-  ${ButtonWrapper} {
+  ${Button} {
     display: none;
   }
 
@@ -60,7 +30,7 @@ export const ImagePreviewWrapper = styled.div`
       opacity: 0.7;
     }
 
-    ${ButtonWrapper} {
+    ${Button} {
       display: block;
     }
   }
