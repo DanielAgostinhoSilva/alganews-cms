@@ -6,12 +6,19 @@ import UserService from "../../sdk/services/User.service";
 
 export default function UserEarnings() {
     const [user, setUser] = useState<User.Detailed>()
+    const [error, setError] = useState<Error>()
 
     useEffect(() => {
         UserService
             .getDeatiledUser(7)
             .then(setUser)
+            .catch(error => {
+                setError(new Error(error.message))
+            })
     }, [])
+
+    if(error)
+        throw error
 
     if(!user)
         return null

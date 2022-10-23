@@ -9,6 +9,7 @@ import formatDatePatternToPostList from "../../core/utils/formatDatePatternToPos
 
 export default function PostList() {
     const [posts, setPots] = useState<Post.Paginated>()
+    const [error, setError] = useState<Error>()
 
     useEffect(() => {
         PostService
@@ -19,7 +20,13 @@ export default function PostList() {
                 sort: ['createdAt', 'desc']
             })
             .then(setPots)
+            .catch(error => {
+                setError(new Error(error.message))
+            })
     }, [])
+
+    if(error)
+        throw error
 
 
     const columns = useMemo<Column<Post.Summary>[]>(

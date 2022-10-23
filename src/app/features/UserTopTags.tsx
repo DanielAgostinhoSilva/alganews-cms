@@ -6,11 +6,18 @@ import MetricService from "../../sdk/services/Metric.service";
 
 export default function UserTopTags() {
     const [topTags, setTopTags] = useState<Metric.EditorTagRatio>([])
+    const [error, setError] = useState<Error>()
 
     useEffect(() => {
         MetricService.getTop3Tags()
             .then(setTopTags)
+            .catch(error => {
+                setError(new Error(error.message))
+            })
     }, [])
+
+    if(error)
+        throw error
 
     return <UserTopTagsWrapper>
         {
