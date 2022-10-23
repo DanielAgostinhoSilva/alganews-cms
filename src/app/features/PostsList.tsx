@@ -7,24 +7,27 @@ import {Post} from "../../sdk/@types";
 import PostService from "../../sdk/services/Post.service";
 import formatDatePatternToPostList from "../../core/utils/formatDatePatternToPostList";
 import Skeleton from "react-loading-skeleton";
+import Loading from "../components/Loading";
 
 export default function PostList() {
     const [posts, setPots] = useState<Post.Paginated>()
     const [error, setError] = useState<Error>()
+    const [page, setPage] = useState(0)
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
+        setLoading(true)
         PostService
             .getAllPosts({
-                page: 0,
+                page,
                 size: 7,
                 showAll: true,
                 sort: ['createdAt', 'desc']
             })
             .then(setPots)
-            .catch(error => {
-                setError(new Error(error.message))
-            })
-    }, [])
+            .catch(error => setError(new Error(error.message)))
+            .finally(() => setLoading(false))
+    }, [page])
 
     if (error)
         throw error
@@ -104,7 +107,11 @@ export default function PostList() {
             <Skeleton height={40}/>
         </div>
 
-    return <Table
-        instance={instance}
-    />
+    return <>
+        <Loading show={loading}/>
+        <Table
+            instance={instance}
+            onPaginate={setPage}
+        />
+    </>
 }
