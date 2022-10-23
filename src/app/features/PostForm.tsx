@@ -10,6 +10,7 @@ import Input from "../components/Input/Input"
 import MarkdownEditor from "../components/MarkdownEditor"
 import TagInput from "../components/TagInput"
 import WordPriceCounter from "../components/WordPriceCounter"
+import Loading from "../components/Loading";
 
 export default function PostForm() {
     const [tags, setTags] = useState<Tag[]>([])
@@ -17,24 +18,34 @@ export default function PostForm() {
     const [title, setTitle] = useState('')
     const [imageUrl, setImageUrl] = useState('')
 
+    const [publishing, setPublishing] = useState(false)
+
     async function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        const newPost = {
-            body,
-            title,
-            tags: tags.map(tag => tag.text),
-            imageUrl,
+        try {
+            setPublishing(true)
+
+            const newPost = {
+                body,
+                title,
+                tags: tags.map(tag => tag.text),
+                imageUrl,
+            }
+
+            const insertedPost = await PostService.insertNewPost(newPost)
+
+            info({
+                title: 'Post salvo com sucesso',
+                description: 'Você acabou de criar o post com o id ' + insertedPost.id
+            })
+
+        } finally {
+            setPublishing(false)
         }
-
-        const insertedPost = await PostService.insertNewPost(newPost)
-
-        info({
-            title: 'Post salvo com sucesso',
-            description: 'Você acabou de criar o post com o id ' + insertedPost.id
-        })
     }
 
     return <PostFormWrapper onSubmit={handleFormSubmit}>
+        <Loading show={publishing}/>
         <Input
             label="título"
             value={title}
