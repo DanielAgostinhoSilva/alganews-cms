@@ -3,6 +3,7 @@ import styled from "styled-components";
 import {useEffect, useState} from "react";
 import {Metric} from "../../sdk/@types";
 import MetricService from "../../sdk/services/Metric.service";
+import Skeleton from "react-loading-skeleton";
 
 export default function UserTopTags() {
     const [topTags, setTopTags] = useState<Metric.EditorTagRatio>([])
@@ -18,6 +19,13 @@ export default function UserTopTags() {
 
     if(error)
         throw error
+
+    if(!topTags.length)
+        return <UserTopTagsWrapper>
+            <Skeleton height={88} width={88} circle />
+            <Skeleton height={88} width={88} circle />
+            <Skeleton height={88} width={88} circle />
+        </UserTopTagsWrapper>
 
     return <UserTopTagsWrapper>
         {

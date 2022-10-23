@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import MetricService from "../../sdk/services/Metric.service";
 import transformEditorMonthlyEarningsIntoChartJs from "../../core/utils/transformEditorMonthlyEarningsIntoChartJs";
 import withBoundary from "../../core/hoc/withBoundary";
+import Skeleton from "react-loading-skeleton";
 
 function UserPerformance () {
     const [editorEarnings, setEditorEarnings] = useState<ChartProps['data']>()
@@ -22,7 +23,9 @@ function UserPerformance () {
         throw error
 
     if(!editorEarnings)
-        return null
+        return <div>
+            <Skeleton height={227}/>
+        </div>
 
     return <Chart
         title="Média de performance nos últimos 12 meses"

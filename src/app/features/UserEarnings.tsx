@@ -3,6 +3,7 @@ import ValueDescriptor from "../components/ValueDescriptor/ValueDescriptor";
 import {useEffect, useState} from "react";
 import {User} from "../../sdk/@types";
 import UserService from "../../sdk/services/User.service";
+import Skeleton from "react-loading-skeleton";
 
 export default function UserEarnings() {
     const [user, setUser] = useState<User.Detailed>()
@@ -21,7 +22,12 @@ export default function UserEarnings() {
         throw error
 
     if(!user)
-        return null
+        return <UserEarningsWrapper style={{height: 123}}>
+            <Skeleton width={150} height={40}/>
+            <Skeleton width={150} height={40}/>
+            <Skeleton width={150} height={40}/>
+            <Skeleton width={150} height={40}/>
+        </UserEarningsWrapper>
 
     return <UserEarningsWrapper>
         <ValueDescriptor description={'ganhos no mês'} value={user.metrics.monthlyEarnings} color={'primary'} isCurrency={true}/>
