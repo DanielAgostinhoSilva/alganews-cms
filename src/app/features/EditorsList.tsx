@@ -4,6 +4,7 @@ import { User } from "../../sdk/@types";
 import UserService from "../../sdk/services/User.service";
 import Profile from "../components/Profile";
 import getEditorDescription from "../../sdk/utils/getEditorDescription";
+import Skeleton from "react-loading-skeleton";
 
 export default function EditorsList () {
     const [editors, setEditors] = useState<User.EditorSummary[]>([])
@@ -13,6 +14,14 @@ export default function EditorsList () {
             .getAllEditors()
             .then(setEditors)
     }, [])
+
+    if(!editors.length) {
+        return <EditorsListWrapper>
+            <Skeleton height={82} />
+            <Skeleton height={82} />
+            <Skeleton height={82} />
+        </EditorsListWrapper>
+    }
 
     return <EditorsListWrapper>
         {
