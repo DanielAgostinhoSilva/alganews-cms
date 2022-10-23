@@ -1,0 +1,29 @@
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import HomeView from "./views/Home.view";
+import EditorsListView from "./views/EditorsList.view";
+import EditorProfileView from "./views/EditorProfile.view";
+import PostCreateView from "./views/PostCreate.view";
+import NotFound404 from "./views/NotFound404.view";
+import React, {useEffect} from "react";
+import info from "../core/utils/info";
+
+export default function App() {
+    useEffect(() => {
+        window.onunhandledrejection = function (error: PromiseRejectionEvent) {
+            info({
+                title: error.reason.response?.data.title || 'Erro',
+                description: error.reason.response?.data.detail || error.reason.message
+            })
+        }
+    },[])
+
+    return <BrowserRouter>
+        <Routes>
+            <Route path={'/'} element={<HomeView/>}/>
+            <Route path={'/editores'} element={<EditorsListView/>}/>
+            <Route path={'/editores/:id'} element={<EditorProfileView/>}/>
+            <Route path={'/posts/criar'} element={<PostCreateView/>}/>
+            <Route path={'*'} element={<NotFound404/>}/>
+        </Routes>
+    </BrowserRouter>
+}
