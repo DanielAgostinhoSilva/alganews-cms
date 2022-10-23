@@ -4,6 +4,7 @@ import {ChangeEvent, useState} from 'react'
 import FileService from '../../../sdk/services/File.service'
 import Button from '../Button/Button'
 import * as IU from './ImageUpload.styles'
+import Loading from "../Loading";
 
 export interface ImageUploadProps {
     label: string,
@@ -12,6 +13,7 @@ export interface ImageUploadProps {
 
 function ImageUpload (props: ImageUploadProps) {
     const [filePreview, setFilePreview] = useState<string | null>(null)
+    const [pushing, setPushing] = useState(false)
 
     function handleChange (e: ChangeEvent<HTMLInputElement>) {
         const file = e.target.files![0]
@@ -20,9 +22,14 @@ function ImageUpload (props: ImageUploadProps) {
             const reader = new FileReader()
 
             reader.addEventListener('load', async e => {
-                setFilePreview(String(e.target?.result));
-                const imageUrl = await FileService.upload(file)
-                props.onImageUpload(imageUrl)
+                try {
+                    setPushing(true)
+                    setFilePreview(String(e.target?.result))
+                    const imageUrl = await FileService.upload(file)
+                    props.onImageUpload(imageUrl)
+                } finally {
+                   setPushing(false)
+                }
             })
 
             reader.readAsDataURL(file)
@@ -31,6 +38,7 @@ function ImageUpload (props: ImageUploadProps) {
 
     if (filePreview)
         return <IU.ImagePreviewWrapper>
+            <Loading show={pushing}/>
             <IU.ImagePreview preview={filePreview}>
                 <Button
                     variant={'primary'}
@@ -41,6 +49,7 @@ function ImageUpload (props: ImageUploadProps) {
         </IU.ImagePreviewWrapper>
 
     return <IU.Wrapper>
+        <Loading show={pushing}/>
         <IU.Label>
             <Icon
                 size={'24px'}
