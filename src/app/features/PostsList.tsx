@@ -1,7 +1,7 @@
 import {mdiOpenInNew} from "@mdi/js"
 import Icon from "@mdi/react"
 import {useEffect, useMemo, useState} from "react"
-import {Column, useTable} from "react-table"
+import {Column, usePagination, useTable} from "react-table"
 import Table from "../components/Table/Table"
 import {Post} from "../../sdk/@types";
 import PostService from "../../sdk/services/Post.service";
@@ -26,7 +26,7 @@ export default function PostList() {
             })
     }, [])
 
-    if(error)
+    if (error)
         throw error
 
     const columns = useMemo<Column<Post.Summary>[]>(
@@ -81,12 +81,18 @@ export default function PostList() {
         []
     )
 
-    const instance = useTable<Post.Summary>({
-        data: posts?.content || [],
-        columns
-    })
+    const instance = useTable<Post.Summary>(
+        {
+            data: posts?.content || [],
+            columns,
+            manualPagination: true,
+            initialState: {pageIndex: 0},
+            pageCount: posts?.totalPages
+        },
+        usePagination
+    )
 
-    if(!posts)
+    if (!posts)
         return <div>
             <Skeleton height={32}/>
             <Skeleton height={40}/>
