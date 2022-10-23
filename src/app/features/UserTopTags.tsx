@@ -16,6 +16,7 @@ export default function UserTopTags() {
         {
             topTags.map((tag, index) => {
                 return <CircleChart
+                    key={index}
                     size={88}
                     progress={tag.percentage}
                     caption={tag.tagName}
