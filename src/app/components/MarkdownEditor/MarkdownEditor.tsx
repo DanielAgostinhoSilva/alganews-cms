@@ -7,13 +7,22 @@ MdEditor.unuse(Plugins.FontUnderline)
 const parser = new MarkdownIt()
 
 export interface MarkdownEditorProps {
-    onChange?: (test: string) => any
+    onChange?: (test: string) => any,
+    value?: string,
+    readonly?: boolean
 }
 
 export default function MarkdownEditor(props: MarkdownEditorProps) {
     return <MdEditor
-        style={{height: 300}}
+        readOnly={props.readonly}
+        style={{height: props.readonly ? 'auto' : 300}}
+        value={props.value}
         renderHTML={text => parser.render(text)}
         onChange={({text}) => props.onChange && props.onChange(text)}
+        view={props.readonly ? {
+            menu: false,
+            md: false,
+            html: true
+        } : undefined}
     />
 }
