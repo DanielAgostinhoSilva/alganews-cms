@@ -9,17 +9,17 @@ const parser = new MarkdownIt()
 export interface MarkdownEditorProps {
     onChange?: (test: string) => any,
     value?: string,
-    readonly?: boolean
+    readOnly?: boolean
 }
 
 export default function MarkdownEditor(props: MarkdownEditorProps) {
     return <MdEditor
-        readOnly={props.readonly}
-        style={{height: props.readonly ? 'auto' : 300}}
+        readOnly={props.readOnly}
+        style={{height: props.readOnly ? 'auto' : 300}}
         value={props.value}
         renderHTML={text => parser.render(text)}
         onChange={({text}) => props.onChange && props.onChange(text)}
-        view={props.readonly ? {
+        view={props.readOnly ? {
             menu: false,
             md: false,
             html: true
