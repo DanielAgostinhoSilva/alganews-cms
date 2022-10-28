@@ -10,6 +10,7 @@ import Skeleton from "react-loading-skeleton";
 import Loading from "../components/Loading";
 import modal from "../../core/utils/modal";
 import PostPreview from "./PostPreview";
+import PostTitleAnchor from "../components/PostTitleAnchor/PostTitleAnchor";
 
 export default function PostList() {
     const [posts, setPots] = useState<Post.Paginated>()
@@ -45,7 +46,13 @@ export default function PostList() {
                 Header: () => <div style={{textAlign: 'left'}}>Título</div>,
                 accessor: 'title',
                 width: 320,
-                Cell: (props) => <div style={{textAlign: 'left', display: 'flex', gap: 8, alignItems: 'center'}}>
+                Cell: (props) => <div style={{
+                    textAlign: 'left',
+                    display: 'flex',
+                    gap: 8,
+                    alignItems: 'center',
+                    maxWidth: 270,
+                }}>
                     <img
                         width={24}
                         height={24}
@@ -53,7 +60,8 @@ export default function PostList() {
                         alt={props.row.original.editor.name}
                         title={props.row.original.editor.name}
                     />
-                    <a
+                    <PostTitleAnchor
+                        title={props.value}
                         href={`/posts/${props.row.original.id}`}
                         onClick={(e) => {
                             e.preventDefault()
@@ -63,7 +71,7 @@ export default function PostList() {
                         }}
                     >
                         {props.value}
-                    </a>
+                    </PostTitleAnchor>
                 </div>
             },
             {
