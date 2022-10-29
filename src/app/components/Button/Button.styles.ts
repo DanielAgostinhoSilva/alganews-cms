@@ -38,7 +38,7 @@ const THEME = {
     `,
     disabled: {
       color: COLORS.foreground,
-      bg: transparentize(0.44, '#508AC9')
+      bg: transparentize(0.44, '#508AC9'),
     }
   }
 }
@@ -63,5 +63,6 @@ export const Wrapper = styled.button<{
 
     pointer-events: none;
     border-color: transparent;
+    opacity: 0.5
   }
 `
