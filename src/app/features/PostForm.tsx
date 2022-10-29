@@ -11,8 +11,10 @@ import MarkdownEditor from "../components/MarkdownEditor"
 import TagInput from "../components/TagInput"
 import WordPriceCounter from "../components/WordPriceCounter"
 import Loading from "../components/Loading";
+import {useNavigate} from "react-router-dom";
 
 export default function PostForm() {
+    const navigate = useNavigate()
     const [tags, setTags] = useState<Tag[]>([])
     const [body, setBody] = useState('')
     const [title, setTitle] = useState('')
@@ -39,6 +41,7 @@ export default function PostForm() {
                 description: 'Você acabou de criar o post com o id ' + insertedPost.id
             })
 
+            navigate('/')
         } finally {
             setPublishing(false)
         }
@@ -68,7 +71,12 @@ export default function PostForm() {
                 pricePerWord={0.10}
                 wordsCount={countWordsInMarkdown(body)}
             />
-            <Button variant="primary" label="Salvar post" type="submit"/>
+            <Button
+                variant="primary"
+                label="Salvar post"
+                type="submit"
+                disabled={!title || !imageUrl || !body || !tags.length}
+            />
         </PostFormSubmitWrapper>
     </PostFormWrapper>
 }
