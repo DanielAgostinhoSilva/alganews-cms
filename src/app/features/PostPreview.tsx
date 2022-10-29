@@ -19,7 +19,7 @@ function PostPreview (props: PostPreviewProps) {
     const [loading, setLoading] = useState(false)
 
     async function publishPost() {
-        await PostService.publishExisingPost(props.postId)
+        await PostService.publishExistingPost(props.postId)
         info({
             title: 'Pos publicado',
             description: 'Você publicou um post com sucesso'
