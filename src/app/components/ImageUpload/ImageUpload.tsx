@@ -1,10 +1,10 @@
 import {mdiUpload} from '@mdi/js'
 import Icon from '@mdi/react'
 import {ChangeEvent, useEffect, useState} from 'react'
-import FileService from '../../../sdk/services/File.service'
 import Button from '../Button/Button'
 import * as IU from './ImageUpload.styles'
 import Loading from "../Loading";
+import {FileService} from "das-agnews-sdk";
 
 export interface ImageUploadProps {
     label: string,
