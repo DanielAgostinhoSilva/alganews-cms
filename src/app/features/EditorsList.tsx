@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { User } from "../../sdk/@types";
-import UserService from "../../sdk/services/User.service";
 import Profile from "../components/Profile";
-import getEditorDescription from "../../sdk/utils/getEditorDescription";
 import Skeleton from "react-loading-skeleton";
+import {getEditorDescription, User, UserService} from "das-agnews-sdk";
 
 export default function EditorsList () {
     const [editors, setEditors] = useState<User.EditorSummary[]>([])

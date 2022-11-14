@@ -3,12 +3,11 @@ import withBoundary from "../../core/hoc/withBoundary";
 import Button from '../components/Button/Button';
 import MarkdownEditor from "../components/MarkdownEditor";
 import {useEffect, useState} from "react";
-import {Post} from "../../sdk/@types";
-import PostService from "../../sdk/services/Post.service";
 import Loading from "../components/Loading";
 import info from "../../core/utils/info";
 import confirm from "../../core/utils/confirm";
 import modal from "../../core/utils/modal";
+import {Post, PostService} from "das-agnews-sdk";
 
 interface PostPreviewProps {
     postId: number

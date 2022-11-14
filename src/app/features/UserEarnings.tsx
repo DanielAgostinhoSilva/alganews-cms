@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import ValueDescriptor from "../components/ValueDescriptor/ValueDescriptor";
 import {useEffect, useState} from "react";
-import {User} from "../../sdk/@types";
-import UserService from "../../sdk/services/User.service";
 import Skeleton from "react-loading-skeleton";
+import {User, UserService} from "das-agnews-sdk";
 
 export default function UserEarnings() {
     const [user, setUser] = useState<User.Detailed>()
@@ -11,7 +10,7 @@ export default function UserEarnings() {
 
     useEffect(() => {
         UserService
-            .getDeatiledUser(7)
+            .getDetailedUser(7)
             .then(setUser)
             .catch(error => {
                 setError(new Error(error.message))

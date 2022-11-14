@@ -1,8 +1,8 @@
 import { ChartProps } from "../../app/components/Chart/Chart";
-import { Metric } from "../../sdk/@types";
 import format from "date-fns/format";
 import parseISO from "date-fns/parseISO";
 import { ptBR } from "date-fns/locale";
+import {Metric} from "das-agnews-sdk";
 
 function transformEditorMonthlyEaningsIntoChartJs(
     editorEarnings: Metric.EditorMonthlyEarnings

@@ -1,9 +1,8 @@
 import CircleChart from "../components/CircleChart";
 import styled from "styled-components";
 import {useEffect, useState} from "react";
-import {Metric} from "../../sdk/@types";
-import MetricService from "../../sdk/services/Metric.service";
 import Skeleton from "react-loading-skeleton";
+import {Metric, MetricService} from "das-agnews-sdk";
 
 export default function UserTopTags() {
     const [topTags, setTopTags] = useState<Metric.EditorTagRatio>([])

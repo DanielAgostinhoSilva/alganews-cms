@@ -3,14 +3,13 @@ import Icon from "@mdi/react"
 import {useEffect, useMemo, useState} from "react"
 import {Column, usePagination, useTable} from "react-table"
 import Table from "../components/Table/Table"
-import {Post} from "../../sdk/@types";
-import PostService from "../../sdk/services/Post.service";
 import formatDatePatternToPostList from "../../core/utils/formatDatePatternToPostList";
 import Skeleton from "react-loading-skeleton";
 import Loading from "../components/Loading";
 import modal from "../../core/utils/modal";
 import PostPreview from "./PostPreview";
 import PostTitleAnchor from "../components/PostTitleAnchor/PostTitleAnchor";
+import {Post, PostService} from "das-agnews-sdk";
 
 export default function PostList() {
     const [posts, setPots] = useState<Post.Paginated>()
