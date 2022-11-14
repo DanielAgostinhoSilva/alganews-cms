@@ -4,10 +4,8 @@ import FieldDescriptor from "../components/FieldDescriptor/FieldDescriptor";
 import ProgressBar from "../components/ProgressBar/ProgressBar";
 import ValueDescriptor from "../components/ValueDescriptor/ValueDescriptor";
 import {useEffect, useState} from "react";
-import {User} from "../../sdk/@types";
 import {useParams} from "react-router-dom";
-import UserService from "../../sdk/services/User.service";
-import getEditorDescription from "../../sdk/utils/getEditorDescription";
+import {getEditorDescription, User, UserService} from "das-agnews-sdk";
 
 interface EditorProfileProps {
     hidePersonalData?: boolean
