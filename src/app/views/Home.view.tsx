@@ -5,9 +5,11 @@ import UserPerformance from "../features/UserPerformance";
 import UserTopTags from "../features/UserTopTags";
 import UserEarnings from "../features/UserEarnings";
 import ErrorBoundary from "../components/ErrorBoundary/ErrorBoundary";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {addPost} from "../../core/store/Post.slice";
+import {RootState} from "../../core/store";
+import selectPaginatedPosts from "../../core/selectors/selectPaginatedPosts";
 
 const fakePost = {
     id: 42,
@@ -51,6 +53,7 @@ const fakePost = {
 export default function HomeView() {
     usePageTitle('Home')
     const dispatch = useDispatch()
+    const paginatedPosts = useSelector(selectPaginatedPosts)
 
     useEffect(() => {
         dispatch(addPost(fakePost))
