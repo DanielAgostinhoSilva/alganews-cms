@@ -1,5 +1,5 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {Post} from "das-agnews-sdk";
+import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {Post, PostService} from "das-agnews-sdk";
 
 interface PostSliceState {
     paginated?: Post.Paginated;
@@ -14,6 +14,14 @@ const initialState: PostSliceState = {
         content: []
     }
 }
+
+export const fetchPosts = createAsyncThunk(
+    'post/fetchPost',
+    async function (query: Post.Query) {
+        const post = await PostService.getAllPosts(query)
+        return post
+    }
+)
 
 const postSlice = createSlice({
     name: 'post',
