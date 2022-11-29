@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice, isFulfilled, isPending, PayloadAction} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, isFulfilled, isPending, isRejected, PayloadAction} from "@reduxjs/toolkit";
 import {Post, PostService} from "das-agnews-sdk";
 
 interface PostSliceState {
@@ -42,6 +42,9 @@ const postSlice = createSlice({
                 state.fetching = true;
             })
             .addMatcher(isFulfilled, (state) => {
+                state.fetching = false;
+            })
+            .addMatcher(isRejected, (state) => {
                 state.fetching = false;
             })
     }
