@@ -3,17 +3,16 @@ import styled from "styled-components";
 import Profile from "../components/Profile";
 import Skeleton from "react-loading-skeleton";
 import {getEditorDescription, User, UserService} from "das-agnews-sdk";
+import useEditors from "../../core/hooks/useEditors";
 
 export default function EditorsList () {
-    const [editors, setEditors] = useState<User.EditorSummary[]>([])
+    const {loading, editorsList, fetchAllEditors} = useEditors();
 
     useEffect(() => {
-        UserService
-            .getAllEditors()
-            .then(setEditors)
-    }, [])
+        fetchAllEditors()
+    }, [fetchAllEditors])
 
-    if(!editors.length) {
+    if(!editorsList.length) {
         return <EditorsListWrapper>
             <Skeleton height={82} />
             <Skeleton height={82} />
@@ -23,7 +22,7 @@ export default function EditorsList () {
 
     return <EditorsListWrapper>
         {
-            editors.map(editor => {
+            editorsList.map(editor => {
                 return <Profile
                     key={editor.id}
                     editorId={editor.id}
