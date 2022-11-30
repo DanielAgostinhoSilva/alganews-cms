@@ -3,6 +3,7 @@ import selectPaginatedPosts from "../selectors/selectPaginatedPosts";
 import selectPostsFetching from "../selectors/selectPostsFetching";
 import * as PostActions from '../store/Post.slice'
 import {Post} from "das-agnews-sdk";
+import {useCallback} from "react";
 
 export default function usePosts() {
     const dispatch = useDispatch();
@@ -10,10 +11,12 @@ export default function usePosts() {
     const paginatedPosts = useSelector(selectPaginatedPosts);
     const loading = useSelector(selectPostsFetching);
 
-    async function fetchPost(query: Post.Query) {
-        dispatch(PostActions.fetchPosts(query))
-    }
-
+    const fetchPost = useCallback(
+        async function (query: Post.Query) {
+            dispatch(PostActions.fetchPosts(query))
+        },
+        [dispatch]
+    );
 
     return {
         paginatedPosts,
