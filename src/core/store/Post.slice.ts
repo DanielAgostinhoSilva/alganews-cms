@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice, isFulfilled, isPending, isRejected, PayloadAction} from "@reduxjs/toolkit";
+import {createAsyncThunk, createReducer, isFulfilled, isPending, isRejected} from "@reduxjs/toolkit";
 import {Post, PostService} from "das-agnews-sdk";
 
 interface PostSliceState {
@@ -25,30 +25,18 @@ export const fetchPosts = createAsyncThunk(
     }
 )
 
-const postSlice = createSlice({
-    name: 'post',
-    initialState,
-    reducers: {
-        addPost(state, action: PayloadAction<Post.Summary>) {
-            state.paginated?.content?.push(action.payload)
-        }
-    },
-    extraReducers(builder) {
-        builder
-            .addCase(fetchPosts.fulfilled, (state, action) => {
-                state.paginated = action.payload
-            })
-            .addMatcher(isPending, (state) => {
-                state.fetching = true;
-            })
-            .addMatcher(isFulfilled, (state) => {
-                state.fetching = false;
-            })
-            .addMatcher(isRejected, (state) => {
-                state.fetching = false;
-            })
-    }
+export const postReducer = createReducer(initialState, (builder) => {
+    builder
+        .addCase(fetchPosts.fulfilled, (state, action) => {
+            state.paginated = action.payload
+        })
+        .addMatcher(isPending, (state) => {
+            state.fetching = true;
+        })
+        .addMatcher(isFulfilled, (state) => {
+            state.fetching = false;
+        })
+        .addMatcher(isRejected, (state) => {
+            state.fetching = false;
+        })
 })
-
-export const postReducer = postSlice.reducer;
-export const {addPost} = postSlice.actions;
