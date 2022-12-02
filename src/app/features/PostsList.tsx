@@ -9,30 +9,21 @@ import Loading from "../components/Loading";
 import modal from "../../core/utils/modal";
 import PostPreview from "./PostPreview";
 import PostTitleAnchor from "../components/PostTitleAnchor/PostTitleAnchor";
-import {Post, PostService} from "das-agnews-sdk";
+import {Post} from "das-agnews-sdk";
+import usePosts from "../../core/hooks/usePosts";
 
 export default function PostList() {
-    const [posts, setPots] = useState<Post.Paginated>()
-    const [error, setError] = useState<Error>()
+    const {loading, paginatedPosts, fetchPost} = usePosts();
     const [page, setPage] = useState(0)
-    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
-        setLoading(true)
-        PostService
-            .getAllPosts({
-                page,
-                size: 7,
-                showAll: true,
-                sort: ['createdAt', 'desc']
-            })
-            .then(setPots)
-            .catch(error => setError(new Error(error.message)))
-            .finally(() => setLoading(false))
+        fetchPost({
+            page,
+            size: 7,
+            showAll: true,
+            sort: ["createdAt", "desc"]
+        })
     }, [page])
-
-    if (error)
-        throw error
 
     const columns = useMemo<Column<Post.Summary>[]>(
         () => [
@@ -105,16 +96,16 @@ export default function PostList() {
 
     const instance = useTable<Post.Summary>(
         {
-            data: posts?.content || [],
+            data: paginatedPosts?.content || [],
             columns,
             manualPagination: true,
             initialState: {pageIndex: 0},
-            pageCount: posts?.totalPages
+            pageCount: paginatedPosts?.totalPages
         },
         usePagination
     )
 
-    if (!posts)
+    if (!paginatedPosts)
         return <div>
             <Skeleton height={32}/>
             <Skeleton height={40}/>
