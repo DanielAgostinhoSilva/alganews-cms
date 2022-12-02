@@ -4,32 +4,23 @@ import transformEditorMonthlyEarningsIntoChartJs from "../../core/utils/transfor
 import withBoundary from "../../core/hoc/withBoundary";
 import Skeleton from "react-loading-skeleton";
 import {MetricService} from "das-agnews-sdk";
+import usePerformance from "../../core/hooks/usePerformance";
 
 function UserPerformance () {
-    const [editorEarnings, setEditorEarnings] = useState<ChartProps['data']>()
-    const [error, setError] = useState<Error>()
+    const {fetchPerformance, performance} = usePerformance();
 
     useEffect(() => {
-        MetricService
-            .getEditorMonthlyEarnings()
-            .then(transformEditorMonthlyEarningsIntoChartJs)
-            .then(setEditorEarnings)
-            .catch(error => {
-                setError(new Error(error.message))
-            })
-    }, [])
+       fetchPerformance()
+    }, [fetchPerformance])
 
-    if(error)
-        throw error
-
-    if(!editorEarnings)
+    if(!performance)
         return <div>
             <Skeleton height={227}/>
         </div>
 
     return <Chart
         title="Média de performance nos últimos 12 meses"
-        data={editorEarnings}
+        data={performance}
     />
 }
 

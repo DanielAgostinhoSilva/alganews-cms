@@ -1,24 +1,15 @@
 import styled from "styled-components";
 import ValueDescriptor from "../components/ValueDescriptor/ValueDescriptor";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import Skeleton from "react-loading-skeleton";
-import {User, UserService} from "das-agnews-sdk";
+import useUser from "../../core/hooks/useUser";
 
 export default function UserEarnings() {
-    const [user, setUser] = useState<User.Detailed>()
-    const [error, setError] = useState<Error>()
+    const {user, fetchUser} = useUser();
 
     useEffect(() => {
-        UserService
-            .getDetailedUser(7)
-            .then(setUser)
-            .catch(error => {
-                setError(new Error(error.message))
-            })
-    }, [])
-
-    if(error)
-        throw error
+       fetchUser();
+    }, [fetchUser])
 
     if(!user)
         return <UserEarningsWrapper style={{height: 123}}>

@@ -3,21 +3,16 @@ import styled from "styled-components";
 import {useEffect, useState} from "react";
 import Skeleton from "react-loading-skeleton";
 import {Metric, MetricService} from "das-agnews-sdk";
+import useTopTags from "../../core/hooks/useTopTags";
 
 export default function UserTopTags() {
-    const [topTags, setTopTags] = useState<Metric.EditorTagRatio>([])
-    const [error, setError] = useState<Error>()
+
+    const {topTags, fetchTopTags} = useTopTags();
 
     useEffect(() => {
-        MetricService.getTop3Tags()
-            .then(setTopTags)
-            .catch(error => {
-                setError(new Error(error.message))
-            })
-    }, [])
+        fetchTopTags()
+    }, [fetchTopTags])
 
-    if(error)
-        throw error
 
     if(!topTags.length)
         return <UserTopTagsWrapper>

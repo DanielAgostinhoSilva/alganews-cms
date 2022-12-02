@@ -23,7 +23,7 @@ export default function PostList() {
             showAll: true,
             sort: ["createdAt", "desc"]
         })
-    }, [page])
+    }, [fetchPost, page])
 
     const columns = useMemo<Column<Post.Summary>[]>(
         () => [
